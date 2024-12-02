@@ -1,0 +1,21 @@
+load("@rules_python//python:defs.bzl", "py_binary", "py_library")
+load("@pypi//:requirements.bzl", "requirement")
+
+py_library(
+    name = "py",
+    srcs = glob(["day*.py"]),
+    deps = [
+        requirement("absl-py"),
+    ],
+)
+
+py_binary(
+    name = "aoc",
+    srcs = ["main.py"],
+    data = ["//input"],
+    main = "main.py",
+    deps = [
+        ":py",
+        requirement("absl-py"),
+    ],
+)
