@@ -3,7 +3,7 @@ load("@pypi//:requirements.bzl", "requirement")
 
 py_library(
     name = "py",
-    srcs = glob(["day*.py"]),
+    srcs = glob(["day*.py"]) + ["util.py"],
     deps = [
         requirement("absl-py"),
     ],

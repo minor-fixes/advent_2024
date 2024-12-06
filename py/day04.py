@@ -1,29 +1,8 @@
 import enum
 import logging as log
 
-class Coord:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+from py import util
 
-    def __add__(self, other):
-        return Coord(self.x + other.x, self.y + other.y)
-
-    def __sub__(self, other):
-        return Coord(self.x-other.x, self.y-other.y)
-
-    def __mul__(self, scale):
-        return Coord(self.x*scale, self.y*scale)
-
-class Direction(enum.Enum):
-    UP = Coord(0, -1)
-    UP_RIGHT = Coord(1, -1)
-    RIGHT = Coord(1, 0)
-    DOWN_RIGHT = Coord(1, 1)
-    DOWN = Coord(0, 1)
-    DOWN_LEFT = Coord(-1, 1)
-    LEFT = Coord(-1, 0)
-    UP_LEFT = Coord(-1, -1)
 
 class Board:
     def __init__(self, contents):
@@ -37,17 +16,19 @@ class Board:
         return self._lines[key.y][key.x]
 
     def word(self, location, direction, length):
-        return "".join(self[location+direction.value*i] for i in range(length))
+        return "".join(self[location + direction.value * i] for i in range(length))
 
     def tlw_with_midpoint(self, location, direction):
-        return "".join([
-            self[location-direction.value],
-            self[location],
-            self[location+direction.value],
-        ])
+        return "".join(
+            [
+                self[location - direction.value],
+                self[location],
+                self[location + direction.value],
+            ]
+        )
 
     def dimensions(self):
-        return Coord(len(self._lines[0]), len(self._lines))
+        return util.Coord(len(self._lines[0]), len(self._lines))
 
 
 def part_1(f):
@@ -56,10 +37,11 @@ def part_1(f):
     xmas_count = 0
     for x in range(dims.x):
         for y in range(dims.y):
-            for dir in Direction:
-                if board.word(Coord(x, y), dir, 4) == "XMAS":
+            for dir in util.Direction:
+                if board.word(util.Coord(x, y), dir, 4) == "XMAS":
                     xmas_count += 1
     return xmas_count
+
 
 def part_2(f):
     board = Board(f.read())
@@ -67,19 +49,19 @@ def part_2(f):
     # If "MAS" is found in a primary direction (key) then check the secondary
     # directions (value) for another instance of "MAS".
     diagonal_dirs = {
-        Direction.DOWN_LEFT: [Direction.DOWN_RIGHT, Direction.UP_LEFT],
-        Direction.DOWN_RIGHT: [Direction.DOWN_LEFT, Direction.UP_RIGHT],
-        Direction.UP_LEFT: [Direction.UP_RIGHT, Direction.DOWN_LEFT],
-        Direction.UP_RIGHT: [Direction.UP_LEFT, Direction.DOWN_RIGHT],
+        util.Direction.DOWN_LEFT: [util.Direction.DOWN_RIGHT, util.Direction.UP_LEFT],
+        util.Direction.DOWN_RIGHT: [util.Direction.DOWN_LEFT, util.Direction.UP_RIGHT],
+        util.Direction.UP_LEFT: [util.Direction.UP_RIGHT, util.Direction.DOWN_LEFT],
+        util.Direction.UP_RIGHT: [util.Direction.UP_LEFT, util.Direction.DOWN_RIGHT],
     }
     mas_count = 0
     for x in range(dims.x):
         for y in range(dims.y):
             for dir, check_dirs in diagonal_dirs.items():
-                if not board.tlw_with_midpoint(Coord(x, y), dir) == "MAS":
+                if not board.tlw_with_midpoint(util.Coord(x, y), dir) == "MAS":
                     continue
                 for check_dir in check_dirs:
-                    if board.tlw_with_midpoint(Coord(x, y), check_dir) == "MAS":
+                    if board.tlw_with_midpoint(util.Coord(x, y), check_dir) == "MAS":
                         mas_count += 1
                         break
     # This function double-counts every instance - for any given occurrence, it
