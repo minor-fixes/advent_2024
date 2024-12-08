@@ -15,6 +15,9 @@ class Coord:
     def __mul__(self, scale):
         return Coord(self.x * scale, self.y * scale)
 
+    def __repr__(self):
+        return f"({self.x}, {self.y})"
+
 
 class Direction(enum.Enum):
     UP = Coord(0, -1)
