@@ -6,6 +6,7 @@ py_library(
     srcs = glob(["day*.py"]) + ["util.py"],
     deps = [
         requirement("absl-py"),
+        requirement("joblib"),
     ],
 )
 

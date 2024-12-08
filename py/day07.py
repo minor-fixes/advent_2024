@@ -1,5 +1,7 @@
 import itertools
 
+import joblib
+
 
 class Equation:
     def __init__(self, line):
@@ -29,4 +31,8 @@ def part_1(f):
 
 def part_2(f):
     equations = [Equation(l) for l in f.read().splitlines()]
-    return sum(e.calibration_result("+*|") for e in equations)
+    return sum(
+        joblib.Parallel(n_jobs=4, return_as="generator_unordered")(
+            joblib.delayed(e.calibration_result)("+*|") for e in equations
+        )
+    )

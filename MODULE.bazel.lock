@@ -277,7 +277,7 @@
         "recordedFileInputs": {
           "@@rules_python~//tools/publish/requirements_linux.txt": "8175b4c8df50ae2f22d1706961884beeb54e7da27bd2447018314a175981997d",
           "@@rules_fuzzing~//fuzzing/requirements.txt": "ab04664be026b632a0d2a2446c4f65982b7654f5b6851d2f9d399a19b7242a5b",
-          "@@//requirements.txt": "61e2f35b0f3338cdc1385c6a985100362466715d34802be3ed5fd7ee9f0c558b",
+          "@@//requirements.txt": "c62596b888115b5d826d38cbd7d2477cb400d317caecc37fdb14226296ef5be4",
           "@@rules_python~//tools/publish/requirements_windows.txt": "7673adc71dc1a81d3661b90924d7a7c0fc998cd508b3cb4174337cef3f2de556",
           "@@protobuf~//python/requirements.txt": "983be60d3cec4b319dcab6d48aeb3f5b2f7c3350f26b3a9e97486c37967c73c5",
           "@@rules_python~//tools/publish/requirements_darwin.txt": "2994136eab7e57b083c3de76faf46f70fad130bc8e7360a7fed2b288b69e79dc"
@@ -396,6 +396,16 @@
               "python_interpreter_target": "@@rules_python~~python~python_3_13_host//:python",
               "repo": "pypi_313",
               "requirement": "absl-py==2.1.0     --hash=sha256:526a04eadab8b4ee719ce68f204172ead1027549089702d99b9059f129ff1308     --hash=sha256:7820790efbb316739cde8b4e19357243fc3608a152024288513dd968d7d959ff"
+            }
+          },
+          "pypi_313_joblib": {
+            "bzlFile": "@@rules_python~//python/private/pypi:whl_library.bzl",
+            "ruleClassName": "whl_library",
+            "attributes": {
+              "dep_template": "@pypi//{name}:{target}",
+              "python_interpreter_target": "@@rules_python~~python~python_3_13_host//:python",
+              "repo": "pypi_313",
+              "requirement": "joblib==1.4.2     --hash=sha256:06d478d5674cbc267e7496a410ee875abd68e4340feff4490bcb7afb88060ae6     --hash=sha256:2382c5816b2636fbd20a09e0f4e9dad4736765fdfb7dca582943b9c1366b3f0e"
             }
           },
           "rules_fuzzing_py_deps_310_absl_py": {
@@ -2923,10 +2933,12 @@
               "repo_name": "pypi",
               "extra_hub_aliases": {},
               "whl_map": {
-                "absl_py": "{\"pypi_313_absl_py\":[{\"version\":\"3.13\"}]}"
+                "absl_py": "{\"pypi_313_absl_py\":[{\"version\":\"3.13\"}]}",
+                "joblib": "{\"pypi_313_joblib\":[{\"version\":\"3.13\"}]}"
               },
               "packages": [
-                "absl_py"
+                "absl_py",
+                "joblib"
               ],
               "groups": {}
             }
