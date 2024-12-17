@@ -111,13 +111,31 @@ class AdventTest(parameterized.TestCase):
         {
             "day": "day09",
             "input": "ex0",
-            "part_1": None,
+            "part_1": "1928",
+            "part_2": None,
+        },
+        {
+            "day": "day09",
+            "input": "ex1",
+            "part_1": "69",
+            "part_2": None,
+        },
+        {
+            "day": "day09",
+            "input": "ex2",
+            "part_1": "1",
+            "part_2": None,
+        },
+        {
+            "day": "day09",
+            "input": "ex3",
+            "part_1": "19",
             "part_2": None,
         },
         {
             "day": "day09",
             "input": "puzzle",
-            "part_1": None,
+            "part_1": "6346871685398",
             "part_2": None,
         },
         {
