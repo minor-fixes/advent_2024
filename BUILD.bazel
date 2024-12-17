@@ -1,3 +1,4 @@
+load("@gazelle//:def.bzl", "gazelle")
 load("@rules_python//python:pip.bzl", "compile_pip_requirements")
 
 compile_pip_requirements(
@@ -5,3 +6,6 @@ compile_pip_requirements(
     src = "requirements.in",
     requirements_txt = "requirements.txt",
 )
+
+# gazelle:prefix github.com/minor-fixes/advent_2024
+gazelle(name = "gazelle")

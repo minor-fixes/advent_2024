@@ -1,0 +1,11 @@
+load("@rules_go//go:def.bzl", "go_binary")
+
+# gazelle:ignore
+
+go_binary(
+    name = "day",
+    srcs = glob(["*.go"]),
+    importpath = "github.com/minor-fixes/advent_2024/go/day",
+    linkmode = "plugin",
+    visibility = ["//visibility:public"],
+)

@@ -1,5 +1,5 @@
-load("@rules_python//python:defs.bzl", "py_binary", "py_library", "py_test")
 load("@pypi//:requirements.bzl", "requirement")
+load("@rules_python//python:defs.bzl", "py_binary", "py_library", "py_test")
 
 py_library(
     name = "py",
@@ -24,10 +24,10 @@ py_binary(
 py_test(
     name = "aoc_test",
     srcs = ["main_test.py"],
-    main = "main_test.py",
     data = ["//input"],
+    main = "main_test.py",
     deps = [
         ":py",
         requirement("absl-py"),
-    ]
+    ],
 )
