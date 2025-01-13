@@ -30,7 +30,7 @@ def main(argv):
     if part_1_answer is not None:
         log.info("Part 1: %s", part_1_answer)
     else:
-        log.warning("Part 1 not implemented (no part_2 function)")
+        log.warning("Part 1 not implemented (no part_1 function)")
     if part_2_answer is not None:
         log.info("Part 2: %s", part_2_answer)
     else:
